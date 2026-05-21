@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import { ArtifactChrome } from "@/components/ArtifactChrome";
+import { FloatingLetters } from "@/components/FloatingLetters";
 import { InsideRefs } from "@/components/InsideRefs";
 import { CursorTrail } from "@/components/CursorTrail";
 import { GrainOverlay } from "@/components/GrainOverlay";
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className="min-h-screen font-mono antialiased">
         <ArtifactChrome />
         <InsideRefs />
+        <FloatingLetters />
         <GrainOverlay />
         <CursorTrail />
         {children}

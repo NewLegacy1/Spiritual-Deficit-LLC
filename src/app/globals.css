@@ -169,11 +169,29 @@ body {
 }
 
 .legal-sub {
-  margin-top: 0.75rem;
   font-size: 10px;
   letter-spacing: 0.22em;
-  text-transform: uppercase;
   color: color-mix(in srgb, var(--color-charcoal) 28%, transparent);
+}
+
+.legal-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.legal-meta-label {
+  text-transform: uppercase;
+}
+
+.legal-meta-icon {
+  display: inline-flex;
+  color: var(--color-charcoal);
+}
+
+.legal-meta-value {
+  letter-spacing: 0.12em;
+  color: var(--color-charcoal);
 }
 
 .redacted {
@@ -190,6 +208,12 @@ body {
   padding: 0.2em 0.5em 0.28em;
   font-size: 11px;
   letter-spacing: 0.24em;
+}
+
+.transmission-blocked {
+  display: block;
+  background: color-mix(in srgb, var(--color-charcoal) 88%, black);
+  padding: 0.35em 0.5em;
 }
 
 /* Inverted evidence blocks — white on charcoal */
@@ -287,4 +311,52 @@ body {
 
 .pizza-glitch-active {
   animation: pizza-glitch 140ms steps(3) forwards;
+}
+
+@keyframes puzzle-reject {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-4px);
+  }
+  80% {
+    transform: translateX(4px);
+  }
+}
+
+.puzzle-reject {
+  animation: puzzle-reject 0.45s ease;
+}
+
+.puzzle-blank:focus {
+  box-shadow: 0 1px 0 0 color-mix(in srgb, var(--color-arterial) 55%, transparent);
+}
+
+@keyframes letter-float {
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0.04;
+  }
+  33% {
+    transform: translate(6px, -14px) rotate(1deg);
+    opacity: 0.09;
+  }
+  66% {
+    transform: translate(-5px, -8px) rotate(-1deg);
+    opacity: 0.06;
+  }
+}
+
+.letter-float {
+  animation: letter-float ease-in-out infinite;
+  user-select: none;
 }
