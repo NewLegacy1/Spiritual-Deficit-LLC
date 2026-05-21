@@ -360,3 +360,200 @@ body {
   animation: letter-float ease-in-out infinite;
   user-select: none;
 }
+
+/* City intro — logo into night */
+@keyframes city-intro-bg {
+  0%,
+  28% {
+    background-color: var(--color-linen);
+  }
+  52%,
+  78% {
+    background-color: var(--color-charcoal);
+  }
+  100% {
+    background-color: var(--color-charcoal);
+  }
+}
+
+@keyframes city-intro-logo {
+  0% {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+    filter: contrast(1.1);
+  }
+  18% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  42% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  62% {
+    opacity: 0.85;
+    transform: scale(1.06) translateY(-12px);
+    filter: blur(0.5px) contrast(1.2);
+  }
+  82% {
+    opacity: 0.15;
+    transform: scale(1.14) translateY(-28px);
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2) translateY(-40px);
+    filter: blur(6px);
+  }
+}
+
+@keyframes city-intro-skyline {
+  0%,
+  44% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  58% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  88% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(8%);
+  }
+}
+
+@keyframes city-intro-haze {
+  0%,
+  48% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0.35;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes city-intro-tag {
+  0%,
+  50% {
+    opacity: 0;
+  }
+  58% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.city-intro {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: crosshair;
+  animation: city-intro-bg 4.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.city-intro::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: city-intro-grain 4.8s steps(6) forwards;
+}
+
+@keyframes city-intro-grain {
+  0%,
+  40% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 0.12;
+  }
+  100% {
+    opacity: 0.08;
+  }
+}
+
+.city-intro-exit {
+  animation: city-intro-fadeout 0.7s ease forwards;
+}
+
+@keyframes city-intro-fadeout {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.city-intro-logo {
+  position: relative;
+  z-index: 2;
+  animation: city-intro-logo 4.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.city-intro-logo-img {
+  animation: city-intro-logo-blend 4.8s ease forwards;
+}
+
+/* Transparent sketch logo — dark on linen, light on charcoal */
+@keyframes city-intro-logo-blend {
+  0%,
+  48% {
+    filter: invert(1) brightness(0.12) contrast(1.15);
+  }
+  56%,
+  100% {
+    filter: brightness(1.05) contrast(1.05);
+  }
+}
+
+.city-intro-skyline {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 1;
+  height: 42%;
+  background: linear-gradient(
+    to top,
+    var(--color-charcoal) 0%,
+    var(--color-charcoal) 72%,
+    transparent 100%
+  );
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 320' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M0 320V220h40v100h30V180h50v140h35V200h45v120h40V160h55v160h30V190h60v130h25V210h70v110h35V175h50v145h40V195h65v125h30V165h80v155h45V205h55v115h40V185h90v135h50V220h40v100h30V150h100v170h55V240h35v80h45V130h95v190h40V255h50v65h60V145h85v175h35V225h70v95h55V170h75v150h40V320z'/%3E%3C/svg%3E");
+  mask-size: 100% 100%;
+  mask-repeat: no-repeat;
+  animation: city-intro-skyline 4.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.city-intro-haze {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% 100%,
+    color-mix(in srgb, var(--color-charcoal) 60%, transparent),
+    transparent 70%
+  );
+  animation: city-intro-haze 4.8s ease forwards;
+}
+
+.city-intro-tag {
+  z-index: 3;
+  animation: city-intro-tag 4.8s ease forwards;
+}

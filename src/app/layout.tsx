@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import { ArtifactChrome } from "@/components/ArtifactChrome";
+import { CityIntro } from "@/components/CityIntro";
 import { FloatingLetters } from "@/components/FloatingLetters";
 import { InsideRefs } from "@/components/InsideRefs";
 import { CursorTrail } from "@/components/CursorTrail";
@@ -26,6 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={ibmPlexMono.variable}>
       <body className="min-h-screen font-mono antialiased">
+        <CityIntro />
         <ArtifactChrome />
         <InsideRefs />
         <FloatingLetters />
