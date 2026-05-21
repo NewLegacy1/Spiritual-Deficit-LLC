@@ -1,7 +1,9 @@
 "use client";
 
 import {
+  createContext,
   useCallback,
+  useContext,
   useEffect,
   useId,
   useRef,
@@ -16,17 +18,29 @@ function normalizeGuess(value: string) {
   return value.trim().toLowerCase().replace(/\s+/g, "");
 }
 
-type TransmissionGateProps = {
-  children: ReactNode;
+type GateContextValue = {
+  openGate: () => void;
 };
 
-export function TransmissionGate({ children }: TransmissionGateProps) {
+const TransmissionGateContext = createContext<GateContextValue | null>(null);
+
+export function useTransmissionGate() {
+  const ctx = useContext(TransmissionGateContext);
+  if (!ctx) {
+    throw new Error("useTransmissionGate must be used within TransmissionGateProvider");
+  }
+  return ctx;
+}
+
+export function TransmissionGateProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [solved, setSolved] = useState(false);
   const [guess, setGuess] = useState("");
   const [reject, setReject] = useState(false);
   const inputId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
+
+  const openGate = useCallback(() => setOpen(true), []);
 
   const close = useCallback(() => {
     setOpen(false);
@@ -59,17 +73,8 @@ export function TransmissionGate({ children }: TransmissionGateProps) {
   };
 
   return (
-    <>
+    <TransmissionGateContext.Provider value={{ openGate }}>
       {children}
-      <button
-        type="button"
-        onClick={() => setOpen(true)}
-        className="group mt-8 text-[10px] uppercase tracking-[0.32em] text-charcoal/35 transition-colors hover:text-charcoal/60"
-      >
-        <span className="glitch inline-block" data-text="[ PREVIEW ]">
-          [ PREVIEW ]
-        </span>
-      </button>
 
       {open && (
         <div
@@ -156,7 +161,23 @@ export function TransmissionGate({ children }: TransmissionGateProps) {
           </div>
         </div>
       )}
-    </>
+    </TransmissionGateContext.Provider>
+  );
+}
+
+export function PreviewButton() {
+  const { openGate } = useTransmissionGate();
+
+  return (
+    <button
+      type="button"
+      onClick={openGate}
+      className="group mt-8 border border-charcoal/20 px-5 py-2.5 text-[11px] uppercase tracking-[0.32em] text-charcoal/65 transition-colors hover:border-charcoal/45 hover:bg-charcoal/[0.04] hover:text-charcoal"
+    >
+      <span className="glitch inline-block" data-text="[ PREVIEW ]">
+        [ PREVIEW ]
+      </span>
+    </button>
   );
 }
 

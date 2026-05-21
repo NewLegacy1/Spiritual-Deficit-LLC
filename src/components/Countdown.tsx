@@ -2,8 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-/** Friday May 22, 11:11 PM — local time, no label. */
-const TARGET = new Date(2026, 4, 22, 23, 11, 0);
+/** Saturday May 23, 11:11 PM — local time, no label. */
+const TARGET = new Date(2026, 4, 23, 23, 11, 0);
 
 function pad(n: number) {
   return String(n).padStart(2, "0");

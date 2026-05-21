@@ -1,10 +1,16 @@
+"use client";
+
+import { useTransmissionGate } from "@/components/TransmissionGate";
+
 const TRANSMISSIONS = [
-  { id: 1, label: "Transmission #1" },
-  { id: 2, label: "Transmission #2" },
-  { id: 3, label: "Transmission #3" },
+  { id: 1, label: "Transmission #1", preview: true },
+  { id: 2, label: "Transmission #2", preview: false },
+  { id: 3, label: "Transmission #3", preview: false },
 ] as const;
 
 export function TransmissionsSection() {
+  const { openGate } = useTransmissionGate();
+
   return (
     <section
       id="transmissions"
@@ -15,19 +21,32 @@ export function TransmissionsSection() {
       </p>
 
       <ul className="mt-12 grid gap-8 md:grid-cols-3 md:gap-6">
-        {TRANSMISSIONS.map(({ id, label }) => (
+        {TRANSMISSIONS.map(({ id, label, preview }) => (
           <li key={id}>
             <p className="mb-3 text-[10px] tracking-[0.22em] text-charcoal/30">
               {label}
             </p>
-            <div
-              className="flex aspect-video items-center justify-center bg-charcoal"
-              aria-hidden
-            >
-              <span className="transmission-blocked min-w-[70%] text-center text-[10px] tracking-[0.28em] text-linen/25">
-                [ BLOCKED ]
-              </span>
-            </div>
+            {preview ? (
+              <button
+                type="button"
+                onClick={openGate}
+                className="flex w-full aspect-video cursor-crosshair items-center justify-center bg-charcoal transition-opacity hover:opacity-90"
+                aria-label="Transmission 1 preview"
+              >
+                <span className="transmission-blocked min-w-[70%] text-center text-[10px] tracking-[0.28em] text-linen/25">
+                  [ BLOCKED ]
+                </span>
+              </button>
+            ) : (
+              <div
+                className="flex aspect-video items-center justify-center bg-charcoal"
+                aria-hidden
+              >
+                <span className="transmission-blocked min-w-[70%] text-center text-[10px] tracking-[0.28em] text-linen/25">
+                  [ BLOCKED ]
+                </span>
+              </div>
+            )}
           </li>
         ))}
       </ul>
