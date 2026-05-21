@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useTransmissionGate } from "@/components/TransmissionGate";
 
 const TRANSMISSIONS = [
@@ -30,11 +31,21 @@ export function TransmissionsSection() {
               <button
                 type="button"
                 onClick={openGate}
-                className="flex w-full aspect-video cursor-crosshair items-center justify-center bg-charcoal transition-opacity hover:opacity-90"
+                className="group relative aspect-video w-full cursor-crosshair overflow-hidden border border-charcoal/25 bg-charcoal"
                 aria-label="Transmission 1 preview"
               >
-                <span className="transmission-blocked min-w-[70%] text-center text-[10px] tracking-[0.28em] text-linen/25">
-                  [ BLOCKED ]
+                <Image
+                  src="/transmission-1-thumb.jpg"
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover photo-evidence-img transition-[filter] duration-500 group-hover:brightness-95"
+                />
+                <div className="absolute inset-0 bg-charcoal/45 transition-colors group-hover:bg-charcoal/35" />
+                <span className="absolute inset-0 flex items-center justify-center">
+                  <span className="transmission-blocked text-center text-[10px] tracking-[0.28em] text-linen/30">
+                    [ BLOCKED ]
+                  </span>
                 </span>
               </button>
             ) : (
