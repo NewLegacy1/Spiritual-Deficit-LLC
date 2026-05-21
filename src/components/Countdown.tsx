@@ -33,9 +33,9 @@ export function Countdown() {
 
   return (
     <div
-      className="tabular-nums text-[clamp(1.5rem,6vw,3.5rem)] tracking-tight text-arterial"
+      className="tabular-nums text-[clamp(2.25rem,14vw,5.5rem)] leading-none tracking-tight text-arterial"
       aria-live="polite"
-      aria-label="Countdown"
+      aria-label="Transmission 1 countdown"
     >
       {pad(days)}:{pad(hours)}:{pad(minutes)}:{pad(seconds)}
     </div>

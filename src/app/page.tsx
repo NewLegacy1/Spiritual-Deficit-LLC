@@ -18,43 +18,32 @@ export default function Home() {
         </p>
       </header>
 
-      <section className="px-6 pb-8 md:px-12">
-        <div className="overflow-hidden">
+      <section className="flex flex-col items-center px-6 pb-12 text-center md:px-12 md:pb-16">
+        <div className="w-full overflow-hidden">
           <h1 className="bleed-type text-charcoal">
-            <span className="block -translate-x-[0.08em]">MBI</span>
+            <span className="block">MBI</span>
           </h1>
           <p className="legal-name">MORAL BANKRUPTCY INC.</p>
           <p className="legal-sub">
-            Reg. nowhere · Est. <span className="redacted">████</span> · Nine
-            (9) subjects
+            Reg. nowhere · Est. <span className="redacted">████</span>
           </p>
         </div>
 
-        <div className="mt-14 flex flex-col gap-10 border-l border-charcoal/10 pl-5 md:mt-16 md:flex-row md:items-end md:justify-between md:pl-8">
-          <div className="hero-copy max-w-md text-sm leading-relaxed md:text-base">
-            <p className="text-charcoal">
-              <GlitchText>Nine of us.</GlitchText> None of your business.
-            </p>
-            <p className="mt-5 text-charcoal/55">
-              We move quietly.{" "}
-              <span className="invert-block">We document</span>
-            </p>
-            <p className="mt-1.5">
-              <span className="invert-line">none of it – until now.</span>
-            </p>
-            <p className="mt-6 text-charcoal/40">
-              We don&apos;t have a mission statement.
-            </p>
-            <p className="mt-5 text-[11px] tracking-[0.08em] text-charcoal/30">
-              If you found this, you weren&apos;t invited.
-            </p>
-          </div>
-          <div className="flex flex-col items-start gap-2 md:items-end">
+        <div className="mt-14 flex w-full max-w-3xl flex-col items-center md:mt-20">
+          <p className="text-xs uppercase tracking-[0.38em] text-charcoal/45">
+            Transmission #1
+          </p>
+          <div className="mt-6">
             <Countdown />
-            <p className="text-[9px] tracking-[0.28em] text-charcoal/25 uppercase">
-              {"/// no label ///"}
-            </p>
           </div>
+        </div>
+
+        <div className="mt-12 text-sm md:mt-14 md:text-base">
+          <p className="text-charcoal">Nine (9) subjects.</p>
+          <p className="mt-5 flex items-baseline justify-center gap-3 text-charcoal/45">
+            <span>—</span>
+            <span className="redacted-bar">[REDACTED]</span>
+          </p>
         </div>
       </section>
 
